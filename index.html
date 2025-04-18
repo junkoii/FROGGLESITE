@@ -171,7 +171,7 @@
             <h1 class="text-4xl md:text-5xl mb-4 text-frogGreen">$FROGGLE</h1>
             <p class="text-xl md:text-2xl mb-8 text-frogLime pixel-font">The Frog Prince of Solana</p>
             <div class="flex flex-col md:flex-row justify-center gap-4 mb-8">
-                <a href="#how-to-buy" class="bg-frogGreen text-frogNight px-6 py-3 rounded-lg font-bold text-lg btn">JUMP IN</a>
+                <a href="#presale" class="bg-frogGreen text-frogNight px-6 py-3 rounded-lg font-bold text-lg btn">JUMP IN</a>
                 <a href="https://raydium.io/swap" target="_blank" class="bg-white text-frogNight px-6 py-3 rounded-lg font-bold text-lg btn">BUY $FROGGLE</a>
             </div>
             <div class="tooltip">
@@ -179,6 +179,162 @@
                     FROGGLExxxxxxxxxxxxxxxxxxxxxxxx
                 </button>
                 <span class="tooltiptext" id="copyTooltip">Copy Address</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-sale Widget Section -->
+    <section id="presale" class="bg-gradient-to-b from-green-900 to-frogNight">
+        <div class="container mx-auto">
+            <h2 class="text-3xl text-center mb-8 text-frogGreen pixel-font">PRE-SALE</h2>
+            <p class="text-center text-frogLime mb-8">Early frogs get 25% more tokens! Pre-sale ends in:</p>
+            
+            <!-- Countdown Timer -->
+            <div class="flex justify-center mb-8">
+                <div class="grid grid-cols-4 gap-4 text-center">
+                    <div class="bg-frogNight border border-frogGreen rounded-lg p-3 w-20">
+                        <div id="days" class="text-2xl font-bold text-frogGreen">00</div>
+                        <div class="text-xs text-white">DAYS</div>
+                    </div>
+                    <div class="bg-frogNight border border-frogGreen rounded-lg p-3 w-20">
+                        <div id="hours" class="text-2xl font-bold text-frogGreen">00</div>
+                        <div class="text-xs text-white">HOURS</div>
+                    </div>
+                    <div class="bg-frogNight border border-frogGreen rounded-lg p-3 w-20">
+                        <div id="minutes" class="text-2xl font-bold text-frogGreen">00</div>
+                        <div class="text-xs text-white">MINUTES</div>
+                    </div>
+                    <div class="bg-frogNight border border-frogGreen rounded-lg p-3 w-20">
+                        <div id="seconds" class="text-2xl font-bold text-frogGreen">00</div>
+                        <div class="text-xs text-white">SECONDS</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pre-sale Widget -->
+            <div class="max-w-md mx-auto bg-frogNight border-2 border-frogGreen rounded-lg overflow-hidden">
+                <!-- Step Navigation -->
+                <div class="flex border-b border-frogGreen">
+                    <button class="presale-tab flex-1 py-3 px-4 text-center text-frogGreen bg-frogNight transition-colors" data-step="1">
+                        <span class="inline-block w-6 h-6 rounded-full bg-frogGreen text-frogNight font-bold mr-2">1</span>
+                        Amount
+                    </button>
+                    <button class="presale-tab flex-1 py-3 px-4 text-center text-gray-400 bg-frogNight transition-colors" data-step="2">
+                        <span class="inline-block w-6 h-6 rounded-full bg-gray-700 text-white font-bold mr-2">2</span>
+                        Wallet
+                    </button>
+                    <button class="presale-tab flex-1 py-3 px-4 text-center text-gray-400 bg-frogNight transition-colors" data-step="3">
+                        <span class="inline-block w-6 h-6 rounded-full bg-gray-700 text-white font-bold mr-2">3</span>
+                        Pay
+                    </button>
+                </div>
+                
+                <!-- Step Content -->
+                <div class="p-6">
+                    <!-- Step 1: Select Amount -->
+                    <div id="step1" class="presale-step">
+                        <h3 class="text-xl mb-4 text-frogLime">Select Amount</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <button class="amount-btn bg-frogNight border border-frogGreen text-frogGreen py-2 rounded-lg" data-amount="0.1">0.1 SOL</button>
+                            <button class="amount-btn bg-frogNight border border-frogGreen text-frogGreen py-2 rounded-lg" data-amount="0.5">0.5 SOL</button>
+                            <button class="amount-btn bg-frogNight border border-frogGreen text-frogGreen py-2 rounded-lg" data-amount="1">1 SOL</button>
+                            <button class="amount-btn bg-frogNight border border-frogGreen text-frogGreen py-2 rounded-lg" data-amount="2">2 SOL</button>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-frogLime mb-2">Custom Amount (SOL)</label>
+                            <input type="number" id="customAmount" min="0.05" step="0.01" placeholder="Enter SOL amount" class="w-full bg-frogNight border border-frogGreen text-white py-2 px-4 rounded-lg">
+                        </div>
+                        <div class="mb-4 p-4 bg-green-900 bg-opacity-30 rounded-lg">
+                            <p class="text-white"><span class="text-frogLime">You Pay:</span> <span id="payAmount">0</span> SOL</p>
+                            <p class="text-white"><span class="text-frogLime">You Receive:</span> <span id="receiveAmount">0</span> $FROGGLE</p>
+                            <p class="text-white"><span class="text-frogLime">Bonus:</span> <span id="bonusAmount">0</span> $FROGGLE (25% Early-Bird)</p>
+                        </div>
+                        <button id="nextToWallet" class="w-full bg-frogGreen text-frogNight font-bold py-3 px-4 rounded-lg btn">
+                            NEXT: CONNECT WALLET
+                        </button>
+                    </div>
+                    
+                    <!-- Step 2: Connect Wallet -->
+                    <div id="step2" class="presale-step hidden">
+                        <h3 class="text-xl mb-4 text-frogLime">Connect Your Wallet</h3>
+                        <p class="text-white mb-6">Choose your preferred Solana wallet to continue</p>
+                        <div class="grid grid-cols-1 gap-4 mb-6">
+                            <button id="connectPhantom" class="flex items-center justify-between bg-frogNight border border-frogGreen text-frogGreen py-3 px-4 rounded-lg btn">
+                                <span>Phantom</span>
+                                <img src="https://phantom.app/img/logo.png" alt="Phantom" class="h-6">
+                            </button>
+                            <button id="connectSolflare" class="flex items-center justify-between bg-frogNight border border-frogGreen text-frogGreen py-3 px-4 rounded-lg btn">
+                                <span>Solflare</span>
+                                <img src="https://solflare.com/assets/logo.svg" alt="Solflare" class="h-6">
+                            </button>
+                            <button id="connectOther" class="flex items-center justify-between bg-frogNight border border-frogGreen text-frogGreen py-3 px-4 rounded-lg btn">
+                                <span>Other Wallet</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button id="backToAmount" class="flex-1 bg-gray-700 text-white font-bold py-3 px-4 rounded-lg btn">
+                                BACK
+                            </button>
+                            <button id="nextToPay" class="flex-1 bg-gray-500 text-gray-300 font-bold py-3 px-4 rounded-lg btn" disabled>
+                                NEXT: PAYMENT
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Confirm & Pay -->
+                    <div id="step3" class="presale-step hidden">
+                        <h3 class="text-xl mb-4 text-frogLime">Confirm & Pay</h3>
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Connected Wallet:</span>
+                                <span id="connectedWallet" class="text-frogGreen">Not Connected</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Amount:</span>
+                                <span id="summaryAmount" class="text-frogGreen">0 SOL</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">$FROGGLE Tokens:</span>
+                                <span id="summaryTokens" class="text-frogGreen">0</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Early-Bird Bonus:</span>
+                                <span id="summaryBonus" class="text-frogGreen">0</span>
+                            </div>
+                            <div class="flex justify-between font-bold border-t border-gray-700 pt-2 mt-2">
+                                <span class="text-white">Total $FROGGLE:</span>
+                                <span id="summaryTotal" class="text-frogGreen">0</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-green-900 bg-opacity-30 rounded-lg mb-6">
+                            <p class="text-sm text-white">$FROGGLE tokens will be sent to your wallet after the presale ends. By proceeding, you agree to our Terms of Service.</p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button id="backToWallet" class="flex-1 bg-gray-700 text-white font-bold py-3 px-4 rounded-lg btn">
+                                BACK
+                            </button>
+                            <button id="confirmPay" class="flex-1 bg-frogGreen text-frogNight font-bold py-3 px-4 rounded-lg btn">
+                                CONFIRM & PAY
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Success Message (Hidden Initially) -->
+                    <div id="successMessage" class="text-center hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-frogGreen mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <h3 class="text-xl mb-2 text-frogLime">Payment Successful!</h3>
+                        <p class="text-white mb-6">You've successfully reserved your $FROGGLE tokens.</p>
+                        <p class="text-frogGreen mb-4">Transaction ID: <span id="txId">...</span></p>
+                        <button id="returnToStart" class="bg-frogGreen text-frogNight font-bold py-2 px-4 rounded-lg btn">
+                            RIBBIT AGAIN
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -375,6 +531,203 @@
                 localStorage.setItem('disclaimerAccepted', 'true');
                 disclaimerModal.classList.add('hidden');
             });
+            
+            // Countdown Timer
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 14); // 14 days from now
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            }
+            
+            setInterval(updateCountdown, 1000);
+            updateCountdown(); // Initial call
+            
+            // Pre-sale Widget Logic
+            const exchangeRate = 10000; // 1 SOL = 10,000 FROGGLE
+            const bonusPercentage = 25; // 25% bonus
+            let selectedAmount = 0;
+            let walletConnected = false;
+            let currentWallet = '';
+            
+            // Amount buttons
+            document.querySelectorAll('.amount-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const amount = parseFloat(this.getAttribute('data-amount'));
+                    document.getElementById('customAmount').value = amount;
+                    updateAmounts(amount);
+                    highlightAmountButton(this);
+                });
+            });
+            
+            // Custom amount input
+            document.getElementById('customAmount').addEventListener('input', function() {
+                const amount = parseFloat(this.value) || 0;
+                updateAmounts(amount);
+                // Remove highlight from preset buttons
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.classList.remove('bg-frogGreen', 'text-frogNight');
+                    btn.classList.add('bg-frogNight', 'text-frogGreen');
+                });
+            });
+            
+            function highlightAmountButton(selectedBtn) {
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.classList.remove('bg-frogGreen', 'text-frogNight');
+                    btn.classList.add('bg-frogNight', 'text-frogGreen');
+                });
+                selectedBtn.classList.remove('bg-frogNight', 'text-frogGreen');
+                selectedBtn.classList.add('bg-frogGreen', 'text-frogNight');
+            }
+            
+            function updateAmounts(amount) {
+                selectedAmount = amount;
+                const tokens = amount * exchangeRate;
+                const bonus = tokens * (bonusPercentage / 100);
+                const total = tokens + bonus;
+                
+                document.getElementById('payAmount').innerText = amount.toFixed(2);
+                document.getElementById('receiveAmount').innerText = Math.floor(tokens).toLocaleString();
+                document.getElementById('bonusAmount').innerText = Math.floor(bonus).toLocaleString();
+                
+                // Update summary in step 3
+                document.getElementById('summaryAmount').innerText = amount.toFixed(2) + ' SOL';
+                document.getElementById('summaryTokens').innerText = Math.floor(tokens).toLocaleString();
+                document.getElementById('summaryBonus').innerText = Math.floor(bonus).toLocaleString();
+                document.getElementById('summaryTotal').innerText = Math.floor(total).toLocaleString();
+            }
+            
+            // Navigation between steps
+            document.getElementById('nextToWallet').addEventListener('click', function() {
+                if (selectedAmount >= 0.05) {
+                    showStep(2);
+                }
+            });
+            
+            document.getElementById('backToAmount').addEventListener('click', function() {
+                showStep(1);
+            });
+            
+            document.getElementById('nextToPay').addEventListener('click', function() {
+                if (walletConnected) {
+                    showStep(3);
+                }
+            });
+            
+            document.getElementById('backToWallet').addEventListener('click', function() {
+                showStep(2);
+            });
+            
+            // Wallet connection simulation
+            document.getElementById('connectPhantom').addEventListener('click', function() {
+                simulateWalletConnection('Phantom');
+            });
+            
+            document.getElementById('connectSolflare').addEventListener('click', function() {
+                simulateWalletConnection('Solflare');
+            });
+            
+            document.getElementById('connectOther').addEventListener('click', function() {
+                simulateWalletConnection('Other');
+            });
+            
+            function simulateWalletConnection(walletName) {
+                // In a real implementation, this would connect to the actual wallet
+                walletConnected = true;
+                currentWallet = walletName + ' (' + generateRandomWalletAddress() + ')';
+                document.getElementById('connectedWallet').innerText = currentWallet;
+                document.getElementById('nextToPay').classList.remove('bg-gray-500', 'text-gray-300');
+                document.getElementById('nextToPay').classList.add('bg-frogGreen', 'text-frogNight');
+                document.getElementById('nextToPay').disabled = false;
+            }
+            
+            function generateRandomWalletAddress() {
+                const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+                let result = '';
+                for (let i = 0; i < 6; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result + '...' + chars.charAt(Math.floor(Math.random() * chars.length)) + 
+                       chars.charAt(Math.floor(Math.random() * chars.length)) + 
+                       chars.charAt(Math.floor(Math.random() * chars.length)) + 
+                       chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            // Payment simulation
+            document.getElementById('confirmPay').addEventListener('click', function() {
+                const txId = 'TX_' + Math.random().toString(36).substr(2, 9).toUpperCase();
+                document.getElementById('txId').innerText = txId;
+                
+                document.querySelectorAll('.presale-step').forEach(step => {
+                    step.classList.add('hidden');
+                });
+                document.getElementById('successMessage').classList.remove('hidden');
+            });
+            
+            document.getElementById('returnToStart').addEventListener('click', function() {
+                document.getElementById('successMessage').classList.add('hidden');
+                showStep(1);
+                resetForm();
+            });
+            
+            function showStep(stepNumber) {
+                // Hide all steps
+                document.querySelectorAll('.presale-step').forEach(step => {
+                    step.classList.add('hidden');
+                });
+                // Show the selected step
+                document.getElementById('step' + stepNumber).classList.remove('hidden');
+                
+                // Update tabs
+                document.querySelectorAll('.presale-tab').forEach((tab, index) => {
+                    const step = index + 1;
+                    if (step < stepNumber) {
+                        tab.classList.add('text-frogGreen');
+                        tab.classList.remove('text-gray-400');
+                        tab.querySelector('span').classList.add('bg-frogGreen', 'text-frogNight');
+                        tab.querySelector('span').classList.remove('bg-gray-700', 'text-white');
+                    } else if (step === stepNumber) {
+                        tab.classList.add('text-frogGreen');
+                        tab.classList.remove('text-gray-400');
+                        tab.querySelector('span').classList.add('bg-frogGreen', 'text-frogNight');
+                        tab.querySelector('span').classList.remove('bg-gray-700', 'text-white');
+                    } else {
+                        tab.classList.add('text-gray-400');
+                        tab.classList.remove('text-frogGreen');
+                        tab.querySelector('span').classList.add('bg-gray-700', 'text-white');
+                        tab.querySelector('span').classList.remove('bg-frogGreen', 'text-frogNight');
+                    }
+                });
+            }
+            
+            function resetForm() {
+                selectedAmount = 0;
+                walletConnected = false;
+                currentWallet = '';
+                
+                document.getElementById('customAmount').value = '';
+                updateAmounts(0);
+                document.querySelectorAll('.amount-btn').forEach(btn => {
+                    btn.classList.remove('bg-frogGreen', 'text-frogNight');
+                    btn.classList.add('bg-frogNight', 'text-frogGreen');
+                });
+                
+                document.getElementById('nextToPay').classList.add('bg-gray-500', 'text-gray-300');
+                document.getElementById('nextToPay').classList.remove('bg-frogGreen', 'text-frogNight');
+                document.getElementById('nextToPay').disabled = true;
+                document.getElementById('connectedWallet').innerText = 'Not Connected';
+            }
         });
         
         // Copy to clipboard functionality
